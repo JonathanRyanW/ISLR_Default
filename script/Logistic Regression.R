@@ -58,5 +58,20 @@ mean(result$Default == result$Prediction)
 "Our Logistic model successfully predicted the correct default category 97.63%
 of the time (2929 out of 3000 attempts). The KNN model in contrast successfully
 predicted default category 847 + 2057 = 2904 out of 3000 attempts
-(96.8% accuracy). We can see that the logistic model only beat the KNN by a
-meager 0.83%. This is nothing at all."
+(97% accuracy). We can see that the logistic model only beat the KNN by a
+meager 0.63%. This is nothing at all."
+
+confusion.logistic <- matrix(nrow = 2, ncol = 2)
+row.names(confusion.logistic) <- c("Predicted: Yes", "Predicted: No")
+colnames(confusion.logistic) <- c("Actual: Yes", "Actual: No")
+
+attach(result)
+confusion.logistic[1,1] <- sum(Default == 2 & Prediction == 2)
+confusion.logistic[1,2] <- sum(Default == 1 & Prediction == 2)
+confusion.logistic[2,1] <- sum(Default == 2 & Prediction == 1)
+confusion.logistic[2,2] <- sum(Default == 1 & Prediction == 1)
+
+detach()
+
+confusion.logistic <- as.data.frame(confusion.logistic)
+write.csv(confusion.logistic, file = "Confusion Matrix - NonStudent.csv")
