@@ -13,6 +13,12 @@ sum(default$default == "Yes" & default$student == "No")
 "333 out of 10000 people defaulted (3.33%). Out of those 333 people 127 are
 students and 206 are students"
 
+Student <- c("Student", "Non-Student")
+Default <- c(127,206)
+write.csv(data.frame(cbind(Student,Default)), file = "default.csv")
+
+rm(Student,Default)
+
 #What is the probability of default based on student status?
 sum(default$student == "Yes")
 sum(default$student == "No")
@@ -21,6 +27,10 @@ sum(default$student == "No")
 default probability is 127/2944 = 4.31% for students and 206/7056 = 2.91% for
 non-students. Students have larger probability of being defaulted provided that
 we do not know their income or credit card balance."
+
+Student <- c("Student", "Non-Student")
+Number <- c(2944,7056)
+write.csv(data.frame(cbind(Student,Number)), file = "number.csv")
 
 stud <- c("Yes", "Yes", "No", "No")
 def <- c("Yes", "No", "Yes", "No")
